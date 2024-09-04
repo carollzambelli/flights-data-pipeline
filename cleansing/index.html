@@ -118,7 +118,15 @@
     <div class="doc doc-contents ">
 
 
-      <p>Classe de saneamento</p>
+      <p>Classe para processo de saneamento de dataframes.</p>
+<h4 id="src.assets.cleansing.Saneamento--attributes">Attributes</h4>
+<p>data : dataframe
+    dataframe a ser submetido pelo processo de saneamento
+metadados : dict
+    dicionário com todos as meta informações necessárias para o tratamento</p>
+<h4 id="src.assets.cleansing.Saneamento--methods">Methods</h4>
+<p>select_rename():
+    Realiza a seleção dos dados de interesse, assim como a renomeação de colunas.</p>
 
               <details class="quote">
                 <summary>Source code in <code>src\assets\cleansing.py</code></summary>
@@ -173,14 +181,36 @@
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Saneamento</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">    Classe de saneamento</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Saneamento</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe para processo de saneamento de dataframes.</span>
 
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : dataframe</span>
+<span class="sd">        dataframe a ser submetido pelo processo de saneamento</span>
+<span class="sd">    metadados : dict</span>
+<span class="sd">        dicionário com todos as meta informações necessárias para o tratamento</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    select_rename():</span>
+<span class="sd">        Realiza a seleção dos dados de interesse, assim como a renomeação de colunas.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">metadados</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">metadados</span> <span class="o">=</span> <span class="n">metadados</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+         <span class="bp">self</span><span class="o">.</span><span class="n">metadados</span> <span class="o">=</span> <span class="n">metadados</span>
 
     <span class="k">def</span> <span class="nf">select_rename</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadados</span><span class="p">[</span><span class="s2">&quot;cols_originais&quot;</span><span class="p">]]</span> 

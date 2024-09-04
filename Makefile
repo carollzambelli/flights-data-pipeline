@@ -1,2 +1,7 @@
+export PYTHONPATH=./src
+
+
 run:
-	python pipeline\app.py
+	- pylint src/pipeline.py
+	- pytest
+	- python src/pipeline.py

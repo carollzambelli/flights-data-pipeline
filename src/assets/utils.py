@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
 from assets.cleansing import Saneamento
-from assets.config.config_ingestion import logger, nyflightsDB, table
+from assets.config.config_ingestion import logger, nyflightsDB
 from assets.config.config_model import dist_query, cols_pre_proc
 
 
@@ -32,6 +32,7 @@ def sqlite_action(method, **kwargs):
     
     df = kwargs.get('df')
     query = kwargs.get('query')
+    table = kwargs.get('table')
     fetch = None
 
     if method == "insert":
@@ -75,7 +76,7 @@ def feat_eng(df, step, metadados, **kwargs):
     else:
         query = dist_query.replace("?dest", kwargs.get("origem"))
         query = query.replace("?orig", kwargs.get("destino"))
-        distancia = sqlite_action("execute", query=query)
+        distancia = sqlite_action("execute", query=query, table="nyflights")
         data["distancia"] = distancia[0][0]
         return data[cols_pre_proc]
 

@@ -9,7 +9,6 @@ load_dotenv()
 logging.basicConfig(filename=os.getenv('PIPE_FILE_PATH'), level=logging.INFO)
 logger = logging.getLogger()
 nyflightsDB = os.getenv('DB_PATH')
-table = os.getenv('TABLE')
 key = os.getenv('ACCESS_KEY')
 
 with open(os.getenv('SAMPLE_PATH'), 'r') as file:

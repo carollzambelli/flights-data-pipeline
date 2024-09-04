@@ -11,9 +11,6 @@ def create_table():
     sqlite_action("execute", query=qcreate_table)
 
 def db_pipeline(metadados):
-    '''
-    Teste
-    '''
     logger.info(f'db-pipeline iniciado; {datetime.datetime.now()}')
     df = pd.read_csv(metadados["path"])
     df["data_voo"] = pd.to_datetime(df[['year', 'month', 'day']]) 
@@ -23,7 +20,7 @@ def db_pipeline(metadados):
         lst_col = data.loc[:,col].apply(lambda x: corrige_hora(x))
         data[f'{col}_formatted'] = pd.to_datetime(data.loc[:,'data_voo'].astype(str) + " " + lst_col)
     
-    sqlite_action("insert", df=feat_eng(data, "db-pipeline", metadados))
+    sqlite_action("insert", df=feat_eng(data, "db-pipeline", metadados), table="nyflights")
     logger.info(f'db-pipeline concluído; {datetime.datetime.now()}')
     
 def api_pipeline(metadados, env, origem, destino):

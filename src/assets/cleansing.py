@@ -8,13 +8,24 @@ warnings.simplefilter(action='ignore', category=UserWarning)
 
 
 class Saneamento:
-    '''
-    Classe de saneamento
-    '''
-    
+    """
+    Classe para processo de saneamento de dataframes.
+
+    Attributes
+    ----------
+    data : dataframe
+        dataframe a ser submetido pelo processo de saneamento
+    metadados : dict
+        dicionário com todos as meta informações necessárias para o tratamento
+
+    Methods
+    -------
+    select_rename():
+        Realiza a seleção dos dados de interesse, assim como a renomeação de colunas.
+    """
     def __init__(self, data, metadados):
-        self.data = data
-        self.metadados = metadados
+         self.data = data
+         self.metadados = metadados
 
     def select_rename(self):
         self.data = self.data.loc[:, self.metadados["cols_originais"]] 
@@ -46,7 +57,7 @@ class Saneamento:
             self.data[new_col] = self.data.loc[:,col].apply(
                 lambda x: re.sub('[^A-Za-z0-9]+', '', x.upper())
                 )
-            
+    
     def null_check(self):
         for col in self.metadados["null_tolerance"].keys():
             col_nuls = len(self.data.loc[self.data[col].isnull()])
